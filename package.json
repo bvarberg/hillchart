@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/bvarberg/hillchart/issues"
   },
-  "homepage": "https://github.com/bvarberg/hillchart#readme"
+  "homepage": "https://github.com/bvarberg/hillchart#readme",
+  "devDependencies": {
+    "@storybook/react": "5.0.0"
+  }
 }
