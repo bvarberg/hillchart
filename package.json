@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest"
   },
   "repository": {
@@ -21,6 +22,12 @@
   },
   "homepage": "https://github.com/bvarberg/hillchart#readme",
   "devDependencies": {
-    "@storybook/react": "5.0.0"
+    "@babel/core": "7.3.4",
+    "@storybook/react": "5.0.0",
+    "babel-loader": "8.0.5"
+  },
+  "dependencies": {
+    "react": "16.8.4",
+    "react-dom": "16.8.4"
   }
 }
