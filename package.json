@@ -1,0 +1,23 @@
+{
+  "name": "hillchart",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvarberg/hillchart.git"
+  },
+  "keywords": [
+    "react",
+    "hillchart"
+  ],
+  "author": "bvarberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bvarberg/hillchart/issues"
+  },
+  "homepage": "https://github.com/bvarberg/hillchart#readme"
+}
