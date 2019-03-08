@@ -1,0 +1,36 @@
+{
+  "name": "hillchart",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvarberg/hillchart.git"
+  },
+  "keywords": [
+    "react",
+    "hillchart"
+  ],
+  "author": "bvarberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bvarberg/hillchart/issues"
+  },
+  "homepage": "https://github.com/bvarberg/hillchart#readme",
+  "devDependencies": {
+    "@babel/core": "7.3.4",
+    "@storybook/addon-knobs": "5.0.0",
+    "@storybook/react": "5.0.0",
+    "babel-loader": "8.0.5",
+    "jest": "24.3.1"
+  },
+  "dependencies": {
+    "prop-types": "15.7.2",
+    "react": "16.8.4",
+    "react-dom": "16.8.4"
+  }
+}
