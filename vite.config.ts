@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: resolve(__dirname, "lib/module.ts"),
+      entry: resolve(__dirname, "src/lib/module.ts"),
       name: "hillchart",
       fileName: "hillchart",
     },
