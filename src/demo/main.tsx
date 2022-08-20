@@ -7,5 +7,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <Demo />
   </React.StrictMode>
 );
-
-import "./lib/sketch";
