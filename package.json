@@ -1,0 +1,42 @@
+{
+  "name": "hillchart",
+  "description": "",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fmt:check": "prettier --check .",
+    "fmt:fix": "prettier --write ."
+  },
+  "dependencies": {
+    "@types/d3-scale": "^4.0.2",
+    "d3-scale": "^4.0.2",
+    "ramda": "^0.28.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.28.15",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "cypress": "^10.6.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvarberg/hillchart.git"
+  },
+  "author": "Byron Varberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bvarberg/hillchart/issues"
+  },
+  "homepage": "https://github.com/bvarberg/hillchart#readme"
+}
