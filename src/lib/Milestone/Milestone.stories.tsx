@@ -40,7 +40,12 @@ interface SVGCanvasProps {
   children?: ReactElement;
 }
 
-function SVGCanvas({ height, width, showBorder, children }: SVGCanvasProps) {
+function SVGCanvas({
+  height = 100,
+  width = 100,
+  showBorder = true,
+  children,
+}: SVGCanvasProps) {
   return (
     <svg
       height={height}
