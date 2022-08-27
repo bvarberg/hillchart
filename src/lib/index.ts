@@ -1,2 +1,2 @@
 export { Hill, Milestone } from "./components";
-export { useScales } from "./useScales";
+export { useHillScales as useScales } from "./useHillScales";

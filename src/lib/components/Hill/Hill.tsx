@@ -1,22 +1,16 @@
 import { line } from "d3-shape";
 import { map, range } from "ramda";
+import type { XScale, YScale } from "../../useHillScales";
 
 const fidelity = 100;
 const xValues = map((n) => n / fidelity, range(0, fidelity + 1));
 
-interface Point {
-  x: number;
-  y: number;
-}
-
 interface Props {
-  x: (d: number) => Point["x"];
-  y: (d: number) => Point["y"];
+  x: XScale;
+  y: YScale;
 }
 
-export function Hill(props: Props) {
-  const { x, y } = props;
-
+export function Hill({ x, y }: Props) {
   const lineGenerator = line<number>().x(x).y(y);
   const path = lineGenerator(xValues);
 

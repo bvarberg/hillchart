@@ -1,5 +1,5 @@
 import { interpolateNumber } from "d3-interpolate";
-import { scaleLinear } from "d3-scale";
+import { ScaleLinear, scaleLinear } from "d3-scale";
 import { useMemo } from "react";
 import { curve } from "./curve";
 
@@ -8,7 +8,10 @@ interface Params {
   width: number;
 }
 
-export function useScales({ height, width }: Params) {
+export type XScale = ScaleLinear<number, number, never>;
+export type YScale = ScaleLinear<number, number, never>;
+
+export function useHillScales({ height, width }: Params) {
   const inputDomain = [0, 1];
 
   const xScale = useMemo(() => {
