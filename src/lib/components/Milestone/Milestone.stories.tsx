@@ -1,6 +1,5 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { ReactElement } from "react";
-
 import { Milestone } from "./Milestone";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -49,8 +48,6 @@ function SVGCanvas({
   return (
     <svg
       height={height}
-      width={width}
-      viewBox={`0 0 ${width} ${height}`}
       style={
         showBorder
           ? {
@@ -58,6 +55,8 @@ function SVGCanvas({
             }
           : undefined
       }
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
     >
       {children}
     </svg>

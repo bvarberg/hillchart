@@ -1,5 +1,5 @@
-import { scaleLinear } from "d3-scale";
 import { interpolateNumber } from "d3-interpolate";
+import { scaleLinear } from "d3-scale";
 import { useMemo } from "react";
 import { curve } from "./curve";
 

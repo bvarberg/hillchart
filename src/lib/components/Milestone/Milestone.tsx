@@ -12,6 +12,6 @@ export function Milestone(props: Props) {
   const { centerPoint, radius } = props;
 
   return (
-    <circle cx={centerPoint.x} cy={centerPoint.y} r={radius} fill="#848484" />
+    <circle cx={centerPoint.x} cy={centerPoint.y} fill="#848484" r={radius} />
   );
 }

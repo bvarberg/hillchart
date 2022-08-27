@@ -20,5 +20,5 @@ export function Hill(props: Props) {
   const lineGenerator = line<number>().x(x).y(y);
   const path = lineGenerator(xValues);
 
-  return path ? <path stroke="#848484" fill="none" d={path} /> : null;
+  return path ? <path d={path} fill="none" stroke="#848484" /> : null;
 }

@@ -1,5 +1,5 @@
-import { useScales, Milestone, Hill } from "../lib";
-import { range, map } from "ramda";
+import { map, range } from "ramda";
+import { Hill, Milestone, useScales } from "../lib";
 import { useChartDimensions } from "../pkg/wattenberger";
 
 export function Demo() {
@@ -30,12 +30,12 @@ export function Demo() {
     <div>
       <code>{JSON.stringify(output, null, 2)}</code>
       <svg
-        width={width}
         height={height}
-        viewBox={`0 0 ${width} ${height}`}
         style={{
           backgroundColor: "#ccc",
         }}
+        viewBox={`0 0 ${width} ${height}`}
+        width={width}
       >
         <g
           transform={`translate(${[
