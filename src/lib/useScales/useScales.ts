@@ -9,12 +9,14 @@ interface Params {
 }
 
 export function useScales({ height, width }: Params) {
+  const inputDomain = [0, 1];
+
   const xScale = useMemo(() => {
-    return scaleLinear().domain([0, 1]).range([0, width]);
+    return scaleLinear().domain(inputDomain).range([0, width]);
   }, [width]);
 
   const yScale = useMemo(() => {
-    const toCurve = scaleLinear().domain([0, 1]).range([-1, 1]);
+    const toCurve = scaleLinear().domain(inputDomain).range([-1, 1]);
 
     const interpolateCurve = (a: number, b: number) => {
       const baseInterpolate = interpolateNumber(a, b);
