@@ -16,22 +16,22 @@ export const useChartDimensions = (params: UseChartDimensionsParams) => {
   const dimensions = combineChartDimensions(params);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  useEffect(() => {
-    if (dimensions.width && dimensions.height) return [ref, dimensions];
-    const element = ref.current;
-    const resizeObserver = new ResizeObserver((entries) => {
-      if (!Array.isArray(entries)) return;
-      if (!entries.length) return;
-      const entry = entries[0];
-      if (width != entry.contentRect.width) setWidth(entry.contentRect.width);
-      if (height != entry.contentRect.height)
-        setHeight(entry.contentRect.height);
-    });
-    resizeObserver.observe(element);
-    return () => {
-      resizeObserver.unobserve(element);
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (dimensions.width && dimensions.height) return [ref, dimensions];
+  //   const element = ref.current;
+  //   const resizeObserver = new ResizeObserver((entries) => {
+  //     if (!Array.isArray(entries)) return;
+  //     if (!entries.length) return;
+  //     const entry = entries[0];
+  //     if (width != entry.contentRect.width) setWidth(entry.contentRect.width);
+  //     if (height != entry.contentRect.height)
+  //       setHeight(entry.contentRect.height);
+  //   });
+  //   resizeObserver.observe(element);
+  //   return () => {
+  //     resizeObserver.unobserve(element);
+  //   };
+  // }, []);
 
   const newSettings = combineChartDimensions({
     ...dimensions,
@@ -39,5 +39,5 @@ export const useChartDimensions = (params: UseChartDimensionsParams) => {
     height: dimensions.height || height,
   });
 
-  return [ref, newSettings];
+  return [ref, newSettings] as const;
 };
