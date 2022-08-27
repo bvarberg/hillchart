@@ -1,23 +1,34 @@
 import { scaleLinear } from "d3-scale";
-import { compose } from "ramda";
+import { interpolateNumber } from "d3-interpolate";
+import { useMemo } from "react";
 import { curve } from "./curve";
 
-interface Options {
+interface Params {
   height: number;
   width: number;
 }
 
-export function useScales({ height, width }: Options) {
-  const toX = scaleLinear().domain([0, 1]).range([0, width]);
+export function useScales({ height, width }: Params) {
+  const xScale = useMemo(() => {
+    return scaleLinear().domain([0, 1]).range([0, width]);
+  }, [width]);
 
-  const toCurve = scaleLinear().domain([0, 1]).range([-1, 1]);
-  const toY = scaleLinear().domain([0, 1]).range([height, 0]);
+  const yScale = useMemo(() => {
+    const toCurve = scaleLinear().domain([0, 1]).range([-1, 1]);
 
-  const x = toX;
-  const y = compose(toY, curve, toCurve);
+    const interpolateCurve = (a: number, b: number) => {
+      const baseInterpolate = interpolateNumber(a, b);
+      return (t: number) => baseInterpolate(curve(toCurve(t)));
+    };
+
+    return scaleLinear()
+      .domain([0, 1])
+      .range([height, 0])
+      .interpolate(interpolateCurve);
+  }, [height]);
 
   return {
-    x,
-    y,
+    x: xScale,
+    y: yScale,
   };
 }
