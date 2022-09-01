@@ -8,7 +8,7 @@ export const snapshotFactory = Factory.define<Snapshot>(({ afterBuild }) => {
   const now = new Date();
 
   return {
-    captured: now,
+    capturedAt: now,
     data: datapointFactory.buildList(3),
   };
 });

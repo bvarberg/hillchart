@@ -2,7 +2,7 @@ import { z } from "zod";
 import { Datapoint } from "./datapoint";
 
 export const Snapshot = z.object({
-  captured: z.date(),
+  capturedAt: z.date(),
   data: z.array(Datapoint),
 });
 
