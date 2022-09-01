@@ -1,6 +1,6 @@
 import { map } from "ramda";
 import { useChartDimensions } from "../../../pkg/wattenberger";
-import type { Snapshot } from "../../schemas/snapshot";
+import type { Snapshot } from "../../structs/snapshot";
 import { useHillScales } from "../../useHillScales";
 import { Hill } from "../Hill";
 import { Milestone } from "../Milestone";
