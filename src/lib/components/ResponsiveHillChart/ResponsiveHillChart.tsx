@@ -1,5 +1,6 @@
 import { max, mergeDeepLeft } from "ramda";
 import { ReactNode } from "react";
+import useResizeObserver from "use-resize-observer";
 import { z } from "zod";
 
 interface Props {
@@ -7,25 +8,44 @@ interface Props {
 }
 
 export function Canvas({ children }: Props) {
+  const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>();
+
   const {
-    dimensions: { overall, padding },
+    dimensions: { overall, bounded, padding },
   } = useDimensions({
+    container: {
+      width,
+      height,
+    },
     padding: {},
   });
 
   return (
-    <svg
-      height={overall.height}
+    <div
+      ref={ref}
       style={{
-        backgroundColor: "#ccc",
+        width: "100%",
+        maxHeight: "400px",
       }}
-      viewBox={`0 0 ${overall.width} ${overall.height}`}
-      width={overall.width}
     >
-      <g transform={`translate(${[padding.left, padding.top].join(",")})`}>
-        {children}
-      </g>
-    </svg>
+      <svg
+        height={overall.height}
+        style={{
+          backgroundColor: "#ccc",
+        }}
+        viewBox={`0 0 ${overall.width} ${overall.height}`}
+        width={overall.width}
+      >
+        <g transform={`translate(${[padding.left, padding.top].join(",")})`}>
+          <rect
+            fill="#846fca"
+            height={bounded.height}
+            width={bounded.width}
+          ></rect>
+          {children}
+        </g>
+      </svg>
+    </div>
   );
 }
 
@@ -51,6 +71,7 @@ const UseDimensions = z
   .function()
   .args(
     z.object({
+      container: RectSize,
       padding: Padding.deepPartial(),
     })
   )
@@ -60,7 +81,7 @@ const UseDimensions = z
     })
   );
 
-const useDimensions = UseDimensions.implement(({ padding }) => {
+const useDimensions = UseDimensions.implement(({ container, padding }) => {
   const p: z.infer<typeof Padding> = mergeDeepLeft(padding, {
     top: 10,
     left: 10,
@@ -68,18 +89,15 @@ const useDimensions = UseDimensions.implement(({ padding }) => {
     right: 10,
   });
 
-  const height = 300;
-  const width = 600;
-
   return {
     dimensions: {
       overall: {
-        height,
-        width,
+        height: container.height,
+        width: container.width,
       },
       bounded: {
-        height: max(height - p.top - p.bottom, 0),
-        width: max(width - p.left - p.right, 0),
+        height: max(container.height - p.top - p.bottom, 0),
+        width: max(container.width - p.left - p.right, 0),
       },
       padding: p,
     },
