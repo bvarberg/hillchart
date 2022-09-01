@@ -1,8 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { datapointFactory } from "../../../pkg/testing/factories/datapoint";
+import { snapshotFactory } from "../../../pkg/testing/factories/snapshot";
 import { HillChart } from "./HillChart";
 
 export default {
-  title: "HillChart",
+  title: "Hill Chart",
   component: HillChart,
   parameters: {
     layout: "centered",
@@ -13,21 +15,23 @@ const Template: ComponentStory<typeof HillChart> = (args) => (
   <HillChart {...args} />
 );
 
-export const Example = Template.bind({});
-Example.args = {
-  snapshot: {
-    captured: new Date(),
+export const Consistent = Template.bind({});
+Consistent.args = {
+  snapshot: snapshotFactory.build({
     data: [
-      {
-        id: "first",
+      datapointFactory.build({
         label: "Early days",
         progress: 0.15,
-      },
-      {
-        id: "second",
+      }),
+      datapointFactory.build({
         label: "Progressing well",
         progress: 0.75,
-      },
+      }),
     ],
-  },
+  }),
+};
+
+export const Randomized = Template.bind({});
+Randomized.args = {
+  snapshot: snapshotFactory.build(),
 };
