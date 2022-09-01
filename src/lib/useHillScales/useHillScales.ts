@@ -8,18 +8,13 @@ interface Params {
   width: number;
 }
 
-export type XScale = ScaleLinear<number, number, never>;
-export type YScale = ScaleLinear<number, number, never>;
-
 export function useHillScales({ height, width }: Params) {
-  const inputDomain = [0, 1];
-
   const xScale = useMemo(() => {
-    return scaleLinear().domain(inputDomain).range([0, width]);
+    return scaleLinear().domain(INPUT_DOMAIN).range([0, width]);
   }, [width]);
 
   const yScale = useMemo(() => {
-    const toCurve = scaleLinear().domain(inputDomain).range([-1, 1]);
+    const toCurve = scaleLinear().domain(INPUT_DOMAIN).range([-1, 1]);
 
     const interpolateCurve = (a: number, b: number) => {
       const baseInterpolate = interpolateNumber(a, b);
@@ -37,3 +32,8 @@ export function useHillScales({ height, width }: Params) {
     y: yScale,
   };
 }
+
+const INPUT_DOMAIN = [0, 1];
+
+export type XScale = ScaleLinear<number, number, never>;
+export type YScale = ScaleLinear<number, number, never>;
