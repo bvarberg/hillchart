@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { HTMLProps, ReactNode } from "react";
 import useResizeObserver from "use-resize-observer";
 import { useDimensions } from "./useDimensions";
 
-interface Props {
+interface Props extends HTMLProps<HTMLDivElement> {
   children?: ReactNode;
 }
 
-export function Canvas({ children }: Props) {
+export function Canvas({ children, ...otherProps }: Props) {
   const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>();
 
   const {
@@ -19,13 +19,7 @@ export function Canvas({ children }: Props) {
   });
 
   return (
-    <div
-      ref={ref}
-      style={{
-        width: "100%",
-        maxHeight: "400px",
-      }}
-    >
+    <div ref={ref} {...otherProps}>
       <svg
         height={overall.height}
         style={{
