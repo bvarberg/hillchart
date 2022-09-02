@@ -1,7 +1,6 @@
-import { max, mergeDeepLeft } from "ramda";
 import { ReactNode } from "react";
 import useResizeObserver from "use-resize-observer";
-import { z } from "zod";
+import { useDimensions } from "./useDimensions";
 
 interface Props {
   children?: ReactNode;
@@ -17,7 +16,6 @@ export function Canvas({ children }: Props) {
       width,
       height,
     },
-    padding: {},
   });
 
   return (
@@ -48,58 +46,3 @@ export function Canvas({ children }: Props) {
     </div>
   );
 }
-
-const Padding = z.object({
-  top: z.number(),
-  left: z.number(),
-  bottom: z.number(),
-  right: z.number(),
-});
-
-const RectSize = z.object({
-  width: z.number(),
-  height: z.number(),
-});
-
-const Dimensions = z.object({
-  overall: RectSize,
-  bounded: RectSize,
-  padding: Padding,
-});
-
-const UseDimensions = z
-  .function()
-  .args(
-    z.object({
-      container: RectSize,
-      padding: Padding.deepPartial(),
-    })
-  )
-  .returns(
-    z.object({
-      dimensions: Dimensions,
-    })
-  );
-
-const useDimensions = UseDimensions.implement(({ container, padding }) => {
-  const p: z.infer<typeof Padding> = mergeDeepLeft(padding, {
-    top: 10,
-    left: 10,
-    bottom: 10,
-    right: 10,
-  });
-
-  return {
-    dimensions: {
-      overall: {
-        height: container.height,
-        width: container.width,
-      },
-      bounded: {
-        height: max(container.height - p.top - p.bottom, 0),
-        width: max(container.width - p.left - p.right, 0),
-      },
-      padding: p,
-    },
-  };
-});
